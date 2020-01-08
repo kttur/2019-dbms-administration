@@ -1,3 +1,5 @@
+-- Восстановление БД из файла с указанием даты
+
 CREATE PROCEDURE DBRestore
 @Date datetime, @Full bit = 1
 AS
