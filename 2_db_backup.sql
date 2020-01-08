@@ -1,8 +1,8 @@
 -- Создание бэкапа БД
--- При Full = 0 -- полная, иначе -- разностная
+-- При Full = 0 -- разностная копия, иначе -- полная
 
 CREATE PROCEDURE DBBackup
-@Full bit = 0
+@Full bit = 1
 AS
 BEGIN
 	IF @Full = 0
