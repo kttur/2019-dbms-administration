@@ -7,11 +7,9 @@ AS
 BEGIN
 	DECLARE @b_path VARCHAR(100)
 	SET @b_path = 'd:\db_backup\dbms_admin_' + FORMAT(CURRENT_TIMESTAMP, N'yyyy-mm-ddTHH.mm.ss')
-	PRINT @b_path
 	IF @Full = 0
 		BEGIN
 		SET @b_path = @b_path + '_diff.bak'
-		PRINT @b_path
 		BACKUP DATABASE DBMS_Admin
 		TO
 		DISK = @b_path
@@ -20,7 +18,6 @@ BEGIN
 	ELSE
 		BEGIN
 		SET @b_path = @b_path + '_full.bak'
-		PRINT @b_path
 		BACKUP DATABASE DBMS_Admin
 		TO
 		DISK = @b_path
