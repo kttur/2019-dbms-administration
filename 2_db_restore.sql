@@ -1,16 +1,15 @@
 -- Восстановление БД из файла с указанием даты
 
 CREATE PROCEDURE DBRestore
-@Date datetime, @Full bit = 1
+@DB_name nvarchar(100), @Date nvarchar(50), @Full bit = 1
 AS
 BEGIN
-	DECLARE @b_path VARCHAR(100)
-	SET @b_path = 'd:\db_backup\dbms_admin_' + FORMAT(@Date, N'yyyy-mm-ddTHH.mm.ss')
+	DECLARE @b_path nvarchar(200)
+	SET @b_path = 'd:\db_backup\' + @DB_name + '_' + @Date
 	IF @Full = 0
 		BEGIN
 		SET @b_path = @b_path + '_diff.bak'
-		PRINT @b_path
-		RESTORE DATABASE DBMS_Admin
+		RESTORE DATABASE @DB_name
 		FROM
 		DISK = @b_path
 		WITH RECOVERY;
@@ -18,8 +17,7 @@ BEGIN
 	ELSE
 		BEGIN
 		SET @b_path = @b_path + '_full.bak'
-		PRINT @b_path
-		RESTORE DATABASE DBMS_Admin
+		RESTORE DATABASE @DB_name
 		FROM
 		DISK = @b_path
 		WITH NORECOVERY;
