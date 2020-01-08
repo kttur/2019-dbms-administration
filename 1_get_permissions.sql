@@ -1,3 +1,5 @@
+-- Получение прав текущего пользователя для текущей БД
+
 CREATE PROCEDURE GetPermissions AS
 BEGIN
 	SELECT * INTO #Permissions FROM fn_my_permissions(NULL, 'SERVER') UNION SELECT * FROM fn_my_permissions(NULL, 'DATABASE');
